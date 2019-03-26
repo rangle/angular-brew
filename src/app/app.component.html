@@ -1,0 +1,17 @@
+<div class="jumbotron">
+  <h1 class="display-5 text-center">Search Brewery</h1>
+  <hr class="my-4">
+  <input class="form-control form-control-lg" type="text" placeholder="Brewery Name" (change)="getBreweries(name.value)"
+    #name>
+</div>
+<div *ngIf="breweries.length > 0 else noData" class="breweryContainer">
+  <div *ngFor="let b of breweries" class="brewery  alert alert-primary">
+    <p class="name">{{ b.name }}</p>
+    <p class="type">{{ b.brewery_type }}</p>
+    <a href="tel://{{b.phone}}">{{ b.phone }}</a>
+    <br>
+    <a [attr.href]="b.website_url">{{ b.website_url }}</a>
+  </div>
+</div>
+<ng-template #noData>No Data Available</ng-template>
+<router-outlet></router-outlet>
